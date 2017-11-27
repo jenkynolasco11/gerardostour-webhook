@@ -17,4 +17,8 @@ webhook.post('/', async ctx => {
   }
 })
 
+webhook.get('/', ctx => {
+  return ctx.body = { ok : true, message : 'it works!' }
+})
+
 export default webhook

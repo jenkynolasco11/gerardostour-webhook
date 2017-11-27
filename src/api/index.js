@@ -2,14 +2,17 @@ import Router from 'koa-router'
 
 import webhook from './webhook'
 
-const api = new Router({ prefix : '/api/v1'})
+const api = new Router({ prefix : 'api/v1'})
+const root = new Router()
 
 api.use('/', webhook.routes(), webhook.allowedMethods())
 
-api.get('/', ctx => {
-  return ctx.body = { ok : true, message : 'it works!' }
+root.use('/', api.routes(), api.allowedMethods())
+
+root.get('/', ctx => {
+  return ctx.redirect('/api/v1/webhook')
 })
 
-api.stack.forEach(e => console.log(e.path))
+root.stack.forEach(e => console.log(e.path))
 
-export default api.routes()
+export default root.routes()

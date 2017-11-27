@@ -5,7 +5,8 @@
   "author": "Jenky Nolasco <jenky.nolasco@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run build && node ./dist/app.js",
+    "start" : "babel-node app.js",
+    "start:dev": "yarn run build && node ./dist/app.js",
     "build": "babel-cli app.js -d ./dist",
     "dev": "nodemon --exec babel-node app.js -e .js"
   },
